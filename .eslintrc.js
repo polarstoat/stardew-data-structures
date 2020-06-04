@@ -1,6 +1,12 @@
 module.exports = {
-  extends: 'airbnb-base',
+  extends: [
+    'airbnb-base',
+    'plugin:jsdoc/recommended',
+  ],
   ignorePatterns: [
     '!.eslintrc.js',
+  ],
+  plugins: [
+    'jsdoc',
   ],
 };
