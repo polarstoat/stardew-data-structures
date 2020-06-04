@@ -37,27 +37,44 @@ class StardewDate {
   }
 
   getMinutes() {
-    return (Math.floor(this.value / TIME_STEP) % HOUR_LENGTH) * 10;
+    const minutes = Math.floor(this.value / TIME_STEP) % HOUR_LENGTH;
+
+    // Multiplied by 10 because each 10 minutes in-game is represented by 1 here
+    return minutes * 10;
   }
 
   getHours() {
-    return ((Math.floor(this.value / HOUR) % DAY_LENGTH) + 6) % 24;
+    const hours = Math.floor(this.value / HOUR) % DAY_LENGTH;
+
+    // Add 6 because in-game each day starts at 06:00
+    // Then modulo 24 to turn 24:00 and 25:00 into 00:00 and 01:00 respectively
+    return (hours + 6) % 24;
   }
 
   getDay() {
-    return new Day(Math.floor(this.value / DAY) % WEEK_LENGTH);
+    const day = Math.floor(this.value / DAY) % WEEK_LENGTH;
+
+    return new Day(day);
   }
 
   getDate() {
-    return (Math.floor(this.value / DAY) % SEASON_LENGTH) + 1;
+    const date = Math.floor(this.value / DAY) % SEASON_LENGTH;
+
+    // Add 1 because humans don't count dates from 0
+    return date + 1;
   }
 
   getSeason() {
-    return new Season(Math.floor(this.value / SEASON) % YEAR_LENGTH);
+    const season = Math.floor(this.value / SEASON) % YEAR_LENGTH;
+
+    return new Season(season);
   }
 
   getYear() {
-    return Math.floor(this.value / YEAR) + 1;
+    const year = Math.floor(this.value / YEAR);
+
+    // Add 1 because game doesn't count years from 0
+    return year + 1;
   }
 
   toString() {
