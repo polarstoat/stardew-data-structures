@@ -44,6 +44,10 @@ class Season {
     return SEASONS[this.index];
   }
 
+  valueOf() {
+    return this.index;
+  }
+
   toString() {
     return this.getName();
   }

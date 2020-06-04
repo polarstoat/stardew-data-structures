@@ -64,6 +64,41 @@ class StardewDate {
   toString() {
     return `${this.getDay().getShortName()} ${this.getSeason()} ${this.getDate()} Year ${this.getYear()} ${leadingZeros(this.getHours())}:${leadingZeros(this.getMinutes())}`;
   }
+
+  setMinutes(minutes) {
+    if (!Number.isInteger(minutes) || minutes < 0 || minutes >= ((HOUR_LENGTH * TIME_STEP) * 10) || minutes % 10 !== 0) throw new Error(`Invalid minutes: '${minutes}'`);
+
+    this.value -= (this.getMinutes() / 10) * TIME_STEP;
+    this.value += (minutes / 10) * TIME_STEP;
+  }
+
+  setHours(hours) {
+    if (!Number.isInteger(hours) || hours < 0 || hours >= 24 || (hours >= 2 && hours < 6)) throw new Error(`Invalid hours: '${hours}'`);
+
+    this.value -= ((this.getHours() + 18) % 24) * HOUR;
+    this.value += ((hours + 18) % 24) * HOUR;
+  }
+
+  setDate(date) {
+    if (!Number.isInteger(date) || date < 0 || date >= SEASON_LENGTH) throw new Error(`Invalid date: '${date}'`);
+
+    this.value -= (this.getDate() - 1) * DAY;
+    this.value += (date - 1) * DAY;
+  }
+
+  setSeason(season) {
+    // The Season constructor has its own input checks
+
+    this.value -= this.getSeason() * SEASON;
+    this.value += new Season(season) * SEASON;
+  }
+
+  setYear(year) {
+    if (!Number.isInteger(year) || year < 0) throw new Error(`Invalid year: '${year}'`);
+
+    this.value -= (this.getYear() - 1) * YEAR;
+    this.value += (year - 1) * YEAR;
+  }
 }
 
 module.exports = StardewDate;
