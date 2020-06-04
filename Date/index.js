@@ -7,13 +7,12 @@ const TIME_STEP = 1;
 const HOUR_LENGTH = 6;
 const DAY_LENGTH = 20;
 const WEEK_LENGTH = 7;
-const SEASON_LENGTH = 4;
+const SEASON_LENGTH = 4 * WEEK_LENGTH;
 const YEAR_LENGTH = 4;
 
 const HOUR = TIME_STEP * HOUR_LENGTH;
 const DAY = HOUR * DAY_LENGTH;
-const WEEK = DAY * WEEK_LENGTH;
-const SEASON = WEEK * SEASON_LENGTH;
+const SEASON = DAY * SEASON_LENGTH;
 const YEAR = SEASON * YEAR_LENGTH;
 
 /**
@@ -50,7 +49,7 @@ class StardewDate {
   }
 
   getDate() {
-    return (Math.floor(this.value / DAY) % (WEEK_LENGTH * SEASON_LENGTH)) + 1;
+    return (Math.floor(this.value / DAY) % SEASON_LENGTH) + 1;
   }
 
   getSeason() {
