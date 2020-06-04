@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "description": "Data structures for Stardew Valley for use in web apps",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint .",
+    "test": "npm run lint"
   },
   "repository": {
     "type": "git",
@@ -19,5 +20,10 @@
   "bugs": {
     "url": "https://github.com/polarstoat/stardew-data-structures/issues"
   },
-  "homepage": "https://github.com/polarstoat/stardew-data-structures#readme"
+  "homepage": "https://github.com/polarstoat/stardew-data-structures#readme",
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2"
+  }
 }
