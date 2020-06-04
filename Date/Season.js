@@ -1,6 +1,14 @@
 const SEASONS = ['Spring', 'Summer', 'Fall', 'Winter'];
 
 class Season {
+  /**
+   * Create a new instance of Season
+   *
+   * @param  {(string|number)} param A string representation of the season, or a zero-indexed
+   *                                   integer of the season (e.g. 0=Spring, 1=Summer, etc.)
+   * @returns {Season}                An instance of Season
+   * @borrows Season#getName as Season#toString
+   */
   constructor(param) {
     // If param is a string, then look up its index in SEASONS
     if (typeof param === 'string') {
@@ -17,10 +25,21 @@ class Season {
     }
   }
 
+  /**
+   * Get an array of the seasons, in order
+   *
+   * @returns {Array} An array of the seasons, in order
+   * @static
+   */
   static SEASONS() {
     return SEASONS;
   }
 
+  /**
+   * Get the name of the season
+   *
+   * @returns {string} The name of the season
+   */
   getName() {
     return SEASONS[this.index];
   }

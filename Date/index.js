@@ -1,10 +1,7 @@
 const Day = require('./Day');
 const Season = require('./Season');
 
-/**
- * Represents 10 minutes in-game
- * @type {Number}
- */
+// Represents 10 minutes in-game
 const TIME_STEP = 1;
 
 const HOUR_LENGTH = 6;
@@ -19,6 +16,12 @@ const WEEK = DAY * WEEK_LENGTH;
 const SEASON = WEEK * SEASON_LENGTH;
 const YEAR = SEASON * YEAR_LENGTH;
 
+/**
+ * Convert a number to a string, and add leading zeros until it is 2 characters long
+ *
+ * @param  {number} num The number to convert
+ * @returns {string}     The converted number, with leading zeros added if necessary
+ */
 function leadingZeros(num) {
   return num.toString().padStart(2, '0');
 }
