@@ -32,10 +32,6 @@ class StardewDate {
     else this.value = value;
   }
 
-  valueOf() {
-    return this.value;
-  }
-
   getMinutes() {
     const minutes = Math.floor(this.value / TIME_STEP) % HOUR_LENGTH;
 
@@ -77,10 +73,6 @@ class StardewDate {
     return year + 1;
   }
 
-  toString() {
-    return `${this.getDay().getShortName()} ${this.getSeason()} ${this.getDate()} Year ${this.getYear()} ${leadingZeros(this.getHours())}:${leadingZeros(this.getMinutes())}`;
-  }
-
   setMinutes(minutes) {
     if (!Number.isInteger(minutes) || minutes < 0 || minutes >= ((HOUR_LENGTH * TIME_STEP) * 10) || minutes % 10 !== 0) throw new Error(`Invalid minutes: '${minutes}'`);
 
@@ -114,6 +106,14 @@ class StardewDate {
 
     this.value -= (this.getYear() - 1) * YEAR;
     this.value += (year - 1) * YEAR;
+  }
+
+  valueOf() {
+    return this.value;
+  }
+
+  toString() {
+    return `${this.getDay().getShortName()} ${this.getSeason()} ${this.getDate()} Year ${this.getYear()} ${leadingZeros(this.getHours())}:${leadingZeros(this.getMinutes())}`;
   }
 }
 

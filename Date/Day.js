@@ -63,6 +63,10 @@ class Day {
     return DAYS[this.index].name;
   }
 
+  valueOf() {
+    return this.index;
+  }
+
   toString() {
     return this.getName();
   }
