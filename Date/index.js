@@ -15,6 +15,9 @@ const DAY = HOUR * DAY_LENGTH;
 const SEASON = DAY * SEASON_LENGTH;
 const YEAR = SEASON * YEAR_LENGTH;
 
+// Hour to start the day at
+const DAY_START = 6;
+
 /**
  * Convert a number to a string, and add leading zeros until it is 2 characters long
  *
@@ -42,9 +45,9 @@ class StardewDate {
   getHours() {
     const hours = Math.floor(this.value / HOUR) % DAY_LENGTH;
 
-    // Add 6 because in-game each day starts at 06:00
+    // Add DAY_START because in-game each day starts at 06:00
     // Then modulo 24 to turn 24:00 and 25:00 into 00:00 and 01:00 respectively
-    return (hours + 6) % 24;
+    return (hours + DAY_START) % 24;
   }
 
   getDay() {
@@ -81,10 +84,10 @@ class StardewDate {
   }
 
   setHours(hours) {
-    if (!Number.isInteger(hours) || hours < 0 || hours >= 24 || (hours >= 2 && hours < 6)) throw new Error(`Invalid hours: '${hours}'`);
+    if (!Number.isInteger(hours) || hours < 0 || hours >= 24 || (hours >= ((DAY_START + DAY_LENGTH) % 24) && hours < DAY_START)) throw new Error(`Invalid hours: '${hours}'`);
 
-    this.value -= ((this.getHours() + 18) % 24) * HOUR;
-    this.value += ((hours + 18) % 24) * HOUR;
+    this.value -= ((this.getHours() + (24 - DAY_START)) % 24) * HOUR;
+    this.value += ((hours + (24 - DAY_START)) % 24) * HOUR;
   }
 
   setDate(date) {
