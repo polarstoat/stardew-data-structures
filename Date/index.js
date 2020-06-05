@@ -31,7 +31,7 @@ function leadingZeros(num) {
 class StardewDate {
   constructor(value) {
     if (typeof value === 'undefined') this.value = 0;
-    else if (value < 0 || !Number.isInteger(value)) throw new Error('Invalid time value');
+    else if (value < 0 || !Number.isInteger(value)) throw new Error(`Invalid time value: '${value}'`);
     else this.value = value;
   }
 
